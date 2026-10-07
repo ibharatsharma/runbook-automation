@@ -24,4 +24,11 @@ public record Runbook(
         boolean isActive,
 
         @MappedCollection(idColumn = "runbook_id") List<RunbookStep> steps) {
+
+    public Runbook withSteps(List<RunbookStep> newSteps) {
+        return new Runbook(
+                id, projectId, typeId, statusId, title, summary, severity, version,
+                createdBy, updatedBy, createdAt, Instant.now(), lastReviewedAt, isActive,
+                newSteps);
+    }
 }
